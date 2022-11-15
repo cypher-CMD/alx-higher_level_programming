@@ -1,10 +1,8 @@
 #!/usr/bin/python3
-"""Define an empty class"""
+"""class module"""
 
 
 class BaseGeometry:
-	"""Representation of BaseGeometry data type"""
-	
-	def area(self):
-		"""Public instance method"""
-		raise Exception("area() is not implemeneted")
+    """an empty class"""
+    def area(self):
+        raise Exception("area() is not implemented")

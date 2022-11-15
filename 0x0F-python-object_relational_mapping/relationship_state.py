@@ -1,28 +1,33 @@
 #!/usr/bin/python3
-"""
-a python file that contains the class definition
-of a State and an instance Base = declarative_base()
-"""
-from sqlalchemy import Column, Integer, String, ForeignKey, MetaData
+'''A module containing the State model.
+'''
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
-my_metadata = MetaData()
-Base = declarative_base(metadata=my_metadata)
+
+Base = declarative_base()
+'''Represents the base class for all tables.
+'''
 
 
 class State(Base):
-    """
-    Class with id, name, and state_id attributes of each city
-    """
-    __tablename__ = 'states'
+    '''Represents a row in a states table.
+    '''
+    __tablename__ = "states"
     id = Column(
         Integer,
+        autoincrement=True,
+        unique=True,
         nullable=False,
         primary_key=True
     )
     name = Column(
-        String(128),
+        String(length=128),
         nullable=False
     )
-    cities = relationship('City', backref='states')
+    cities = relationship(
+        "City",
+        cascade="all, delete, delete-orphan",
+        backref="state"
+    )
